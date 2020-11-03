@@ -81,6 +81,7 @@ public class CDCollectionHandler {
 
     /**
      * Diese Methode dient dazu, einen CD-Ständer zu sortieren nach Artist+Title. Gleichzeitig wird der CD-Ständer komprimiert.
+     * Hierzu bitte nach der Methode "compareTo(String s)" für Java suchen.
      *
      * @param box - Gewählter CD-Ständer
      */
