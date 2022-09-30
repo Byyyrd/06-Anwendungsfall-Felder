@@ -52,7 +52,7 @@ public class CDCollectionHandler {
      *
      * @param box - Index des gewählten CD-Ständers
      * @param place - Index des gewählten Platzes
-     * @return - true, falls eine vorhandene CD entfernt wurde, false, falls keine Cd zum entfernen vorhanden war.
+     * @return - true, falls eine vorhandene CD entfernt wurde; false, falls keine CD zum Entfernen vorhanden war.
      */
     public boolean releaseCD(int box, int place){
         //TODO: 04 - Entfernen einer bestimmten CD
@@ -71,7 +71,7 @@ public class CDCollectionHandler {
     }
 
     /**
-     * Diese Methode dient dazu, einen CD-Ständer zu komprimieren. Dabei rücken spätere CDs einfach auf. Die vorhandene Sortierung bleibt erhalten.
+     * Diese Methode dient dazu einen CD-Ständer zu komprimieren. Dabei rücken spätere CDs einfach auf. Die vorhandene Sortierung bleibt erhalten.
      *
      * @param box - Index des Gewählten CD-Ständers
      */
@@ -80,7 +80,7 @@ public class CDCollectionHandler {
     }
 
     /**
-     * Diese Methode dient dazu, einen CD-Ständer zu sortieren nach Artist+Title. Gleichzeitig wird der CD-Ständer komprimiert.
+     * Diese Methode dient dazu einen CD-Ständer zu sortieren nach Artist+Title. Gleichzeitig wird der CD-Ständer komprimiert.
      * Hierzu bitte nach der Methode "compareTo(String s)" für Java suchen.
      *
      * @param box - Gewählter CD-Ständer
