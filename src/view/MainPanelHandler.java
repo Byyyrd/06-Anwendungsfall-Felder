@@ -162,10 +162,10 @@ public class MainPanelHandler {
         DefaultListModel listModel = new DefaultListModel();
 
         String[] output = controller.showAllCDs(index);
-        /*for(int i = 0; i < output.length; i = i + 2){
+        for(int i = 0; i < output.length; i = i + 2){
             String outputText = output[i] + " - " + output[i+1];
             listModel.addElement(outputText);
-        }*/
+        }
 
         allBoxes[index].setModel(listModel);
     }
