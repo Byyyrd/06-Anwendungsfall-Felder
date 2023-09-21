@@ -2,8 +2,6 @@ package control;
 
 import model.CompactDisc;
 
-import java.util.Arrays;
-
 /**
  * Created by Jean-Pierre on 21.10.2016.
  */
@@ -56,6 +54,17 @@ public class CDCollectionHandler {
             return new String[]{allCDs[box][place].getArtist(),allCDs[box][place] .getTitle() };
         }
         return new String[]{"Empty","Empty"};
+        /*String[] output = new String[2];
+
+        if(allCDs[box][place] != null){
+            output[0] = allCDs[box][place].getArtist();
+            output[1] = allCDs[box][place] .getTitle();
+        }else {
+            output[0] = "Empty";
+            output[1] = "Empty";
+        }
+        return output;*/
+
     }
 
     /**
@@ -97,23 +106,28 @@ public class CDCollectionHandler {
      */
     public void pack(int box){
         //COMPLETE: 06 - Komprimieren eines CD-Ständers, von unten nach oben
-        CompactDisc[] array = allCDs[box];
-        /*int nullIndex = -1;
+        /*CompactDisc[] array = allCDs[box];
+        int nullIndex = -1;
         for (int i = 0; i < array.length; i++) {
             if(array[i] == null && nullIndex == -1){
                 nullIndex = i;
             }
-            if(nullIndex != -1 && i > nullIndex){
-                array[i - 1] = array[i];
+            if(nullIndex != -1 && i > nullIndex && array[i] != null){
+                array[nullIndex] = array[i];
                 array[i] = null;
+                nullIndex++;
             }
         }*/
-        for (int i = 1; i < array.length; i++) {
-            if(allCDs[box][i - 1] == null){
-                allCDs[box][i-1] = allCDs[box][i];
-                allCDs[box][i] = null;
+        int decrement = 0;
+        for (int i = 1; i < allCDs[box].length; i++) {
+            decrement = 0;
+            while (i - 1 - decrement >= 0 && allCDs[box][i - 1 - decrement] == null){
+                allCDs[box][i-1 - decrement] = allCDs[box][i - decrement];
+                allCDs[box][i - decrement] = null;
+                decrement++;
             }
         }
+
 
     }
 
@@ -124,6 +138,41 @@ public class CDCollectionHandler {
      * @param box - Gewählter CD-Ständer
      */
     public void sort(int box){
-        //TODO: 07 - Sortieren eines CD-Ständers
+        //COMPLETE: 07 - Sortieren eines CD-Ständers
+        pack(box);
+        quickCDSort(allCDs[box],0,getNullIndex(allCDs[box]) - 1);
+    }
+    public int getNullIndex(CompactDisc[] array){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null) {
+                return i;
+            }
+        }
+        return array.length;
+    }
+    public static void quickCDSort(CompactDisc[] array, int start, int end){
+        if(end <= start){
+            return;
+        }
+        int i = start - 1;
+        int pivot = end;
+        for (int j = start; j < pivot; j++) {
+            if((array[j].getArtist()+array[j].getTitle()).compareTo(array[pivot].getArtist()+array[pivot].getTitle()) < 0){
+                i++;
+                CompactDisc temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+        }
+        i++;
+        CompactDisc temp = array[i];
+        array[i] = array[pivot];
+        array[pivot] = temp;
+        pivot = i;
+
+
+        quickCDSort(array, start, pivot - 1);
+        quickCDSort(array, pivot + 1, end);
+
     }
 }

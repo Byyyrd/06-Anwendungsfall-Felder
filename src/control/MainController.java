@@ -19,6 +19,9 @@ public class MainController {
         addNewCD(1,2,"Metallica","St. Anger");
         addNewCD(2,5,"Limp Bizkit","Significant Other");
         addNewCD(2,5,"Limp Bizkit","Chocolate Starfish and the Hot Dog Flavoured Water");
+        addNewCD(3,0,"ABC","A");
+        addNewCD(3,1,"ABC","C");
+        addNewCD(3,2,"ABC","B");
     }
 
     public String[] showAllCDs(int index){
